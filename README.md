@@ -12,7 +12,7 @@ Los datos fueron construidos con arreglos dummy para evitar la conexión a una b
 const PRODUCTS = [...dummies]
 ```
 
-De dicho arreglo es donde se procesan las peticiones y se retorna la información filtrada. Se usaron dos consultas:
+De dicho arreglo es donde se procesan las peticiones y se retorna la información filtrada usando dos funciones:
 
 ```javascript
 const Queries = {
@@ -20,8 +20,6 @@ const Queries = {
   findProduct: (_, { name }) => PRODUCTS.find(product => product.name === name) // Returns the found product
 }
 ```
-
-Finalmente el cliente deberá ingresar consultas en GraphQL de esta forma:
 
 ## Consultas de GraphQL
 
