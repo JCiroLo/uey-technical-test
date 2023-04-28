@@ -1,0 +1,30 @@
+@import "../config";
+
+button.button-component {
+  all: unset;
+  padding: $unit $unit * 2;
+  border-radius: $unit * 0.5;
+  font-weight: 500;
+  transition: background-color 0.2s ease-out;
+
+  &:hover {
+    cursor: pointer;
+
+    &.primary {
+      background-color: rgba(black, 0.75);
+    }
+
+    &.secondary {
+      background-color: rgba(white, 0.75);
+    }
+  }
+
+  &.primary {
+    background-color: black;
+    color: white;
+  }
+
+  &.secondary {
+    background-color: white;
+  }
+}

@@ -1,0 +1,22 @@
+@import "../config";
+
+@media (max-width: $break_point_lg) {
+  .container-component {
+    width: 90vw;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: $break_point_lg) and (max-width: $break_point_xl) {
+  .container-component {
+    width: 80vw;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: $break_point_xl) {
+  .container-component {
+    width: $break_point_lg;
+    margin: 0 auto;
+  }
+}

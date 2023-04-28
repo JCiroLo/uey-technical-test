@@ -1,0 +1,26 @@
+--- Vista de producto
+
+3 tipos de producto: 
+- Simple: se compran a cierta dirección. Ej: Bebidas.
+- Rentable: se rentan para una fecha. Ej: Mesas. Distintos tipos de renta:
+	- Por noche
+	- Por horas
+- Espacios: lugares que se rentan para hacer eventos. Ej: Salón de fiestas.
+
+Información general de producto:
+- Nombre producto
+- Nombre vendedor
+- Imagen
+- Precio
+
+Información de productos simples:
+- Inventario
+
+Información de productos rentables:
+- Tipo de renta: noche, hora
+- Fecha disponibilidad
+
+Información de productos de espacios:
+- Ubicación
+- Fecha disponibilidad
+

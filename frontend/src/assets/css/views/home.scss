@@ -1,0 +1,9 @@
+@import "../config";
+
+.home-view {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: $unit * 2;
+  row-gap: $unit * 4;
+  padding: $unit * 2;
+}

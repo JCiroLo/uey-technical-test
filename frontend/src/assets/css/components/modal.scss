@@ -1,0 +1,53 @@
+@import "../config";
+
+.modal-component {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(black, 0.2);
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+
+    .modal-content {
+      transform: scale(1);
+    }
+  }
+
+  .modal-content {
+    min-width: min(90vw, $unit * 75);
+    padding: $unit;
+    border-radius: $unit * 2;
+    transform: scale(0.75);
+    background-color: white;
+    transition: transform 0.2s ease-out;
+
+    .modal-header {
+      padding: $unit;
+
+      p {
+        font-size: 1.25em;
+        font-weight: 600;
+      }
+    }
+
+    .modal-body {
+      padding: $unit;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: $unit;
+    }
+  }
+}
