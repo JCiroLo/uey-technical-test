@@ -6,6 +6,46 @@
 
 Se definieron tres tipos de estructuras las cuales representan cada uno de los productos a exhibir: 'ProductSimple', 'ProductRentable', 'ProductPlace'. Como cada uno almacena atributos en común se decidió crear una unión que representara un producto en general llamado 'Product', dicha unión es el tipo de retorno de las queries de GraphQL para simplificar las consultas realizadas por el cliente. También se generó un enum como estructura de valores predefinidos en el tipo de renta de producto rentable, para mantener los valores ordenados y acotados, dado que no es posible que se ingrese otro valor diferente de 'PER_NIGHT' y 'PER_HOUR'.
 
+```graphql
+type RentedDate {
+    from: String
+    to: String
+}
+
+enum RentType {
+    PER_NIGHT
+    PER_HOUR
+}
+
+union Product = ProductSimple | ProductRentable | ProductPlace
+
+type ProductSimple {
+  name: String!
+  seller: String!
+  image: String!
+  price: Float!
+  stock: Int!
+}
+
+type ProductRentable {
+  name: String!
+  seller: String!
+  image: String!
+  price: Float!
+  rentType: RentType!
+  rentedDate: RentedDate!
+}
+
+type ProductPlace {
+  name: String!
+  seller: String!
+  image: String!
+  price: Float!
+  location: String!
+  rentedDate: RentedDate!
+}
+```
+
 Los datos fueron construidos con arreglos dummy para evitar la conexión a una base de datos y facilitar el desarrollo.
 
 ```javascript
@@ -116,37 +156,7 @@ En el directorio del proyecto se encuentran dos carpetas llamadas [backend](http
 
 ## Decisiones tomadas
 
-- Se estableció la arquitectura en el back-end usando el modelado de GraphQL. A pesar de haber un solo producto, se decidió hacer uso de herencia dado que habían atributos en común entre los diferentes tipos de producto, como lo son nombre, vendedor, precio e imagen, y posteriormente hacer los tipos de producto como sub-clases con sus atributos extra como disponibilidad y ubicación, sin embargo, como GraphQL no soporta herencia, se decidió hacer una unión llamada 'Product' entre los tres tipos de producto 'ProductSimple', 'ProductRentable' y 'ProductPlace', de esta forma:
-
-```graphql
-union Product = ProductSimple | ProductRentable | ProductPlace
-
-type ProductSimple {
-  name: String!
-  seller: String!
-  image: String!
-  price: Float!
-  stock: Int!
-}
-
-type ProductRentable {
-  name: String!
-  seller: String!
-  image: String!
-  price: Float!
-  rentType: RentType!
-  rentedDate: RentedDate!
-}
-
-type ProductPlace {
-  name: String!
-  seller: String!
-  image: String!
-  price: Float!
-  location: String!
-  rentedDate: RentedDate!
-}
-```
+- Se estableció la arquitectura en el back-end usando el modelado de GraphQL. A pesar de haber un solo producto, se había decidido hacer uso de herencia dado que habían atributos en común entre los diferentes tipos de producto, como lo son nombre, vendedor, precio e imagen, y posteriormente hacer los tipos de producto como sub-clases con sus atributos extra como disponibilidad y ubicación, sin embargo, como GraphQL no soporta herencia, se decidió hacer una unión llamada 'Product' entre los tres tipos de producto 'ProductSimple', 'ProductRentable' y 'ProductPlace'.
 
 - En las consultas se hace el filtrado y se retornan las estructuras del tipo 'Product' para que el cliente no tenga que preocuparse por hacer tres consultas para cada uno de los tipos de producto, sin embargo esto agrega un punto importante y es que se deben considerar las condiciones dependiendo del tipo de producto al momento de renderizar la información.
 
