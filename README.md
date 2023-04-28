@@ -4,7 +4,7 @@
 
 ![data_modeling](img/architecture.png?raw=true "Modelado de datos en GraphQL" )
 
-Se definieron 3 tipos de estructuras las cuales representan cada uno de los productos a exhibir: 'ProductSimple', 'ProductRentable', 'ProductPlace'. Como cada uno almacena atributos en común se decidió crear una unión que representara un producto en general llamada 'Product', dicha unión sería el tipo que retornan las queries de GraphQL para simplificar las consultas realizadas por el cliente. También se generó un enum como estructura de valores predefinidos en el tipo de renta de producto rentable para mantener los posibles valores ordenados y acotados, dado que no sería posible que se ingresara otro valor diferente de 'PER_NIGHT' y 'PER_HOUR'.
+Se definieron tres tipos de estructuras las cuales representan cada uno de los productos a exhibir: 'ProductSimple', 'ProductRentable', 'ProductPlace'. Como cada uno almacena atributos en común se decidió crear una unión que representara un producto en general llamado 'Product', dicha unión es el tipo de retorno de las queries de GraphQL para simplificar las consultas realizadas por el cliente. También se generó un enum como estructura de valores predefinidos en el tipo de renta de producto rentable, para mantener los valores ordenados y acotados, dado que no es posible que se ingrese otro valor diferente de 'PER_NIGHT' y 'PER_HOUR'.
 
 Los datos fueron construidos con arreglos dummy para evitar la conexión a una base de datos y facilitar el desarrollo.
 
@@ -22,6 +22,10 @@ const Queries = {
 ```
 
 Finalmente el cliente deberá ingresar consultas en GraphQL de esta forma:
+
+## Consultas de GraphQL
+
+A continuación se muestran los codigos en GraphQL, el cual obtiene todos los productos o un solo producto, los segmenta según el tipo y retorna los atributos deseados.
 
 ### Obtener todos los productos
 
@@ -109,12 +113,12 @@ query {
 
 ## Código
 
-En el directorio del proyecto se encuentran 2 carpetas llamadas [back-end](https://github.com/JCiroLo/uey-technical-test/tree/main/backend) y [front-end](https://github.com/JCiroLo/uey-technical-test/tree/main/frontend). Allí se encuentra el código fuente de la aplicación. Para ejecutar el servidor y poder visualizar la aplicación se debe ingresar el comando `npm start` en los directorios mencionados.
+En el directorio del proyecto se encuentran dos carpetas llamadas [backend](https://github.com/JCiroLo/uey-technical-test/tree/main/backend) y [frontend](https://github.com/JCiroLo/uey-technical-test/tree/main/frontend). Allí se encuentra el código fuente de la aplicación. Para ejecutar el servidor y poder visualizar la aplicación, se deben ingresar los comandos `npm install` y `npm start` en los directorios mencionados.
 
 
 ## Decisiones tomadas
 
-- Se estableció una arquitectura en el backend usando el modelado de GraphQL, a pesar de haber un solo producto se decidió hacer uso de herencia dado que habían atributos en común entre los diferentes tipos de producto como lo son nombre, vendedor, precio e imagen, y posteriormente hacer los tipos de productos como sub-clases con sus atributos extra como disponibilidad y ubicación sin embargo, como GraphQL no soporta herencia se decidió hacer una unión llamada 'Product' entre los tres tipos de productos 'ProductSimple', 'ProductRentable' y 'ProductPlace', de esta forma:
+- Se estableció la arquitectura en el back-end usando el modelado de GraphQL. A pesar de haber un solo producto, se decidió hacer uso de herencia dado que habían atributos en común entre los diferentes tipos de producto, como lo son nombre, vendedor, precio e imagen, y posteriormente hacer los tipos de producto como sub-clases con sus atributos extra como disponibilidad y ubicación, sin embargo, como GraphQL no soporta herencia, se decidió hacer una unión llamada 'Product' entre los tres tipos de producto 'ProductSimple', 'ProductRentable' y 'ProductPlace', de esta forma:
 
 ```graphql
 union Product = ProductSimple | ProductRentable | ProductPlace
@@ -146,11 +150,11 @@ type ProductPlace {
 }
 ```
 
-- En las consultas se haría el filtrado y se retornarían solo estructuras del tipo 'Product' para que el cliente no tenga que preocuparse por hacer 3 consultas para cada uno de los tipos de producto, sin embargo esto agrega un punto importante y es que debe agregar condiciones dependiendo del tipo de producto al momento de renderizar la información.
+- En las consultas se hace el filtrado y se retornan las estructuras del tipo 'Product' para que el cliente no tenga que preocuparse por hacer tres consultas para cada uno de los tipos de producto, sin embargo esto agrega un punto importante y es que se deben considerar las condiciones dependiendo del tipo de producto al momento de renderizar la información.
 
-- Se decidió establecer un tipo RentedDate dado que era una estructura que se repetía tanto en 'ProductRentable' como en 'ProductPlace'.
+- Se decidió establecer un tipo 'RentedDate' dado que es una estructura que se repite tanto en 'ProductRentable' como en 'ProductPlace'.
 
-- Se decidió hacer la búsqueda por nombre debido a que puede ser un identificador único para cada producto.
+- Se decidió hacer la búsqueda por nombre debido a que puede ser un identificador óptimo para cada producto.
 
 - Se estableció una arquitectura basada en vistas y componentes en el front-end. Las vistas son componentes de ReactJS que encapsulan otros componentes y están ligadas únicamente a una ruta.
 
@@ -163,10 +167,10 @@ type ProductPlace {
 </p>
 
 
-No obstante también se creó una vista llamada también Product la cual muestra la información específica del producto dependiendo del tipo de producto que se visualice.
+No obstante también se creó una vista llamada Product la cual muestra la información específica del producto dependiendo del tipo de producto que se visualice.
 
 <img src="img/product-sample-2.png"/>
 
-- Se decidió crear un archivo específico para las consultas GraphQL para mantener orden y acceder a ellas cuando se necesiten.
+- Se decidió crear un archivo específico para las consultas GraphQL, para mantener orden y acceder a ellas cuando se necesiten.
 
-- Se decidió usar el pre-procesador SASS para facilitar la escritura y lectura de código CSS.
+- Se decidió usar el pre-procesador SASS para facilitar el codificado y lectura de CSS.

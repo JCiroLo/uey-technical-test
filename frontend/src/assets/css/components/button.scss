@@ -27,4 +27,13 @@ button.button-component {
   &.secondary {
     background-color: white;
   }
+
+  &:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: #aaa;
+    }
+  }
 }

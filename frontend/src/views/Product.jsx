@@ -89,21 +89,19 @@ function Product () {
             <p>{price}</p>
           </div>
           <div className='buy-product'>
-            <Button onClick={handleToggleModal}>
+            <Button disabled={!isAvailable} onClick={handleToggleModal}>
               {type === 'ProductSimple' ? 'Comprar' : 'Rentar'}
             </Button>
           </div>
           <div className='product-availability'>
             {type === 'ProductSimple' ? (
-              <section>
+              <section className={isAvailable ? 'available' : 'not-available'}>
                 <h2>Disponibles</h2>
                 <p>{extra.stock}</p>
               </section>
             ) : (
-              <section>
-                <h2 className={isAvailable ? 'available' : 'not-available'}>
-                  {isAvailable ? 'Disponible' : 'No disponible'}
-                </h2>
+              <section className={isAvailable ? 'available' : 'not-available'}>
+                <h2>{isAvailable ? 'Disponible' : 'No disponible'}</h2>
               </section>
             )}
           </div>
