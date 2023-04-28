@@ -116,7 +116,7 @@ En el directorio del proyecto se encuentran 2 carpetas llamadas [back-end](https
 
 - Se estableció una arquitectura en el backend usando el modelado de GraphQL, a pesar de haber un solo producto se decidió hacer uso de herencia dado que habían atributos en común entre los diferentes tipos de producto como lo son nombre, vendedor, precio e imagen, y posteriormente hacer los tipos de productos como sub-clases con sus atributos extra como disponibilidad y ubicación sin embargo, como GraphQL no soporta herencia se decidió hacer una unión llamada 'Product' entre los tres tipos de productos 'ProductSimple', 'ProductRentable' y 'ProductPlace', de esta forma:
 
-```
+```graphql
 union Product = ProductSimple | ProductRentable | ProductPlace
 
 type ProductSimple {
