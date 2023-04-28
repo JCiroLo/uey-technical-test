@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <Container>
       <div className='home-view'>
-        {[...products, ...products, ...products].map((product, index) => (
+        {products.map((product, index) => (
           <Product product={product} key={index}></Product>
         ))}
       </div>

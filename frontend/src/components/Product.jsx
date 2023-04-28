@@ -25,7 +25,7 @@ const Product = ({ product }) => {
       <div className='product-overlay'>
         <Button
           variant='secondary'
-          onClick={() => navigate(`/product/${name}`)}
+          onClick={() => navigate(`/product/${name.trim()}`)}
         >
           {type === 'ProductSimple' ? 'Comprar' : 'Rentar'}
         </Button>

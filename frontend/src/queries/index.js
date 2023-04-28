@@ -19,7 +19,6 @@ const QUERIES = {
             seller
             image
             price
-            rentType
             rentedDate {
               from
               to
@@ -31,7 +30,6 @@ const QUERIES = {
             seller
             image
             price
-            location
             rentedDate {
               from
               to
