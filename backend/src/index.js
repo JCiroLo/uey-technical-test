@@ -2,9 +2,9 @@ import { ApolloServer, gql } from 'apollo-server'
 
 import ProductsSimple from './dummies/products.simple.js'
 import ProductsRent from './dummies/products.rent.js'
-import ProductsRoom from './dummies/products.room.js'
+import ProductPlace from './dummies/products.place.js'
 
-const PRODUCTS = [...ProductsSimple, ...ProductsRent, ...ProductsRoom]
+const PRODUCTS = [...ProductsSimple, ...ProductsRent, ...ProductPlace]
 
 const typeDefs = gql`
   enum RentType {
